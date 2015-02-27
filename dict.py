@@ -28,9 +28,9 @@ def showResult(result):
         print
         print '\t', "网络释义:"
         for webExp in result["web"]:
-            print '\t\t' + webExp["key"] + '\t',
-            if len(webExp["key"]) == len(result["query"]):
-                    print '\t',
+            print '\t\t%-20s' %  webExp["key"],
+            #if len(webExp["key"]) == len(result["query"]):
+            #       print '\t',
             for value in webExp["value"]:
                 print value + ';',
             print
