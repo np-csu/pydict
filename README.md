@@ -16,4 +16,8 @@ $ python setup.py install
 $ pydict [要查询的单词或句子]
 ```
 
+## 运行效果
+![example1](example1.png)
+![example2](example2.png)
+
 
