@@ -5,17 +5,19 @@ import urllib2
 import sys, getopt
 import json
 
+from termcolor import colored
+
 URL = "http://fanyi.youdao.com/openapi.do?keyfrom=sasfasdfasf&key=1177596287&type=data&doctype=json&version=1.1&q="
 
 def showResult(result):
     if "basic" not in result.keys():
-        print "未找到您查询的单词:", result["query"]
+        print colored("未找到您查询的单词:" , 'yellow'),
+        print colored(result["query"], 'red')
+        print
         return
     else:
-        # print "您查询的单词:", result["query"]
-        # print "查询结果如下:"
         print
-        print '\t\t\t' + result["query"]
+        print colored('\t\t\t' + result["query"], 'green')
         print
         if "us-phonetic" in result["basic"] and "uk-phonetic" in result["basic"]:
             print '\t', "美音音标:", "[" + result["basic"]["us-phonetic"] + "]", "\t英音音标:", "[" + result["basic"]["uk-phonetic"] + "]"
