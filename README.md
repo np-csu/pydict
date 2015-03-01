@@ -8,12 +8,14 @@
 $ git clone https://github.com/np-csu/pydict.git
 $ cd pydict
 $ python setup.py install
+$ cd bin
+$ ln dict ~/bin/
 ```
 
 ## 如何使用
 
 ```bash
-$ pydict [要查询的单词或句子]
+$ dict [要查询的单词或句子]
 ```
 
 ## 运行效果
