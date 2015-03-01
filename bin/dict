@@ -11,7 +11,7 @@ URL = "http://fanyi.youdao.com/openapi.do?keyfrom=sasfasdfasf&key=1177596287&typ
 
 def showResult(result):
     if "basic" not in result.keys():
-        print colored("未找到您查询的单词:" , 'yellow'),
+        print colored("未找到您查询的单词/句子:" , 'yellow'),
         print colored(result["query"], 'red')
         print
         return
