@@ -28,7 +28,7 @@ def showResult(result):
         print
         print '\t', "网络释义:"
         for webExp in result["web"]:
-            print '\t\t%-20s' %  webExp["key"],
+            print '\t\t%s' %  alignString(webExp["key"], 20),
             for value in webExp["value"]:
                 print value + ';',
             print
@@ -36,6 +36,7 @@ def showResult(result):
 
 def getResult(word):
     try:
+        word = urllib2.quote(word)
         return urllib2.urlopen(URL + word)
     except urllib2.URLError as e:
         print "错误: 向服务器发送查询请求未成功，请检查网络"
@@ -44,6 +45,25 @@ def getResult(word):
 
 def parseJson(resp):
     return json.loads(resp.read())
+
+def alignString(string, length=0):
+    if length == 0:
+        return string
+
+    strLen = len(string)
+    length -= strLen
+    result = string
+    placeholder = ' '
+    if string[0] >= u'\u4e00' and string[0] <= u'\u9fa5':
+        #placeholder = u'　'
+        length -= strLen
+    else:
+        pass
+        #placeholder = ' '
+    while length >= 0:
+        result += placeholder
+        length -= 1
+    return result
 
 def usage():
     print '''
@@ -66,6 +86,7 @@ def main():
         print "错误: 使用了无效的参数-%s" % e.opt
         usage()
         sys.exit()
+
     resp = getResult(" ".join(args).lower())
     result = parseJson(resp)
     showResult(result)
